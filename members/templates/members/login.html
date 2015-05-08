@@ -1,0 +1,20 @@
+<h1>Log in page</h1>
+<p>You are not logged in.</p>
+
+<form action='login_user' method='post'>
+	{% csrf_token %}
+	<p>User name:</p>
+	<input name = 'user_name'>
+	<p>Password:</p>
+	<input name = 'password'>
+	<br></br>
+<!--	<button>Log in</button>-->
+	<input type = "submit" value="Log in">
+</form>
+
+<a href="{% url 'members:signup' %}"><button>Register new user</button></a>
+
+<!-- <form action='signup' method='get'>
+	{% csrf_token %}
+	<button>Register new user</button>
+</form> -->

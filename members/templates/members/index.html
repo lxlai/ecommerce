@@ -1,0 +1,9 @@
+<h1>User Index Page</h1>
+
+<p>You're logged in.</p>
+
+<form action='logout' method='post'>
+	{% csrf_token %}
+	<input type = "submit" value="Log out">
+<!--	<button>Log out</button>-->
+</form>

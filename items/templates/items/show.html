@@ -1,0 +1,16 @@
+<h1>Item Page</h1>
+
+<p>Item: {{ item.name }}</p>
+
+<p>Item number: {{ item.id }}</p>
+
+<p>Price: {{ item.price }}</p>
+
+<p>Description: {{ item.description}}</p>
+
+<a href="{% url 'items:index' %}"><button>Back to index</button></a>
+
+<!-- <form action='index' method='get'>
+	{% csrf_token %}
+	<button>Back to index</button>
+</form> -->

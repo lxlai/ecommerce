@@ -1,0 +1,17 @@
+<h1>Sign up form</h1>
+<form action='register' method='post'>
+	{% csrf_token %}
+	<p>First Name:</p>
+	<input name = 'first_name'>
+	<p>Last Name:</p>
+	<input name = 'last_name'>
+	<p>E-mail:</p>
+	<input name = 'email'>
+	<p>User Name:</p>
+	<input name = 'user_name'>
+	<p>Password:</p>
+	<input name = 'password'>
+	<br></br>
+<!--	<button>Sign up</button>-->
+	<input type = "submit" value = "Sign up">
+</form>

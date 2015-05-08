@@ -1,0 +1,21 @@
+<h1>Shopping Cart</h1>
+
+
+{% if items %}
+	{% csrf_token %}
+	<ul>
+	{% for item in items %}
+    	<li><a href="{% url 'items:show' item.id %}">{{ item.name }}</a> ${{ item.price }} <a href="{% url 'items:cart' %}/{{ item.id }}/delete">Remove</a></li>
+	{% endfor %}
+	</ul>
+{% endif %}
+
+<p>Cart total: ${{ total }}</p>
+
+<form action="checkout" method="get">
+	{% csrf_token %}
+	<input type = "submit" value="Check out">
+<!--	<button>Check out</button>-->
+</form>
+
+<a href="{% url 'items:index' %}"><button>Back to items</button></a>

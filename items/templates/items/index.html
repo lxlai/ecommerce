@@ -1,0 +1,55 @@
+<h1>Item index page</h1>
+
+<p>Welcome, {{ name }}!</p>
+
+<p>Search or filter by price</p>
+
+<p><a href="{% url 'items:index' %}?filter=1">$0 - $19.99</a></p>
+<p><a href="{% url 'items:index' %}?filter=2">$20 - $39.99</a></p>
+<p><a href="{% url 'items:index' %}?filter=3">$40 - $59.99</a></p>
+<p><a href="{% url 'items:index' %}?filter=4">$60 +</a></p>
+
+<form action="" method="get">
+<!--	<input type="hidden" name="filter" value="">-->
+	<input type="text" name="search">
+	<input type="submit" value="Search">
+</form>
+<br></br>
+
+
+{% if items %}
+	{% csrf_token %}
+	<ul>
+	{% for item in items %}
+    	<li><a href="{% url 'items:show' item.id %}">{{ item.name }}</a> ${{ item.price }} <a href="{% url 'items:cart' %}/{{ item.id }}/add">Add to cart</a></li>
+	{% endfor %}
+	</ul>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if items.has_previous %}
+			<a href = "?page={{ items.previous_page_number }}">previous</a>
+		{% endif %}
+
+		<span class="current">
+			Page {{ items.number }} of {{ items.paginator.num_pages }}.
+		</span>
+
+		{% if items.has_next %}
+			<a href = "?page={{ items.next_page_number }}">next</a>
+		{% endif %}
+	</span>
+</div>
+
+{% else %}
+    <p>There are no items.</p>
+{% endif %}
+
+<br></br>
+<a href="{% url 'items:cart' %}"><button>My cart</button></a>
+<br></br>
+<form action='/members/logout' method='get'>
+	{% csrf_token %}
+	<input type = "submit" value="Log out">
+<!--	<button>Log out</button>-->
+</form>
