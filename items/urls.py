@@ -9,4 +9,5 @@ urlpatterns = [
  url(r'^cart$', views.cart, name='cart'),
  url(r'^cart/(?P<item_id>[0-9]+)/delete$', views.delete_item, name='delete_item'),
  url(r'^checkout', views.checkout, name='checkout'),
+ url(r'^payments', views.payments, name='payments'),
 ]

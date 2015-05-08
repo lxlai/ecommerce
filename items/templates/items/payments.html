@@ -1,0 +1,10 @@
+<h1>Payment page</h1>
+
+<form action='checkout' method='post'>
+	{% csrf_token %}
+	<p>Credit card number:</p>
+	<input name = 'payment'>
+	<br></br>
+<!--	<button>Sign up</button>-->
+	<input type = "submit" value = "Place Order">
+</form>

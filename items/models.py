@@ -15,4 +15,4 @@ class Order(models.Model):
 	user = models.ForeignKey(User)
 	items = models.ManyToManyField(Item)
 	def __str__(self):
-		return str(self.status)
+		return str(self.id)

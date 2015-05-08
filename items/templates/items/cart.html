@@ -2,6 +2,7 @@
 
 
 {% if items %}
+	<p> Order number: {{ order.id }}</p>
 	{% csrf_token %}
 	<ul>
 	{% for item in items %}
@@ -12,10 +13,10 @@
 
 <p>Cart total: ${{ total }}</p>
 
-<form action="checkout" method="get">
+<!--<form action="payments" method="get" value="order">
 	{% csrf_token %}
 	<input type = "submit" value="Check out">
-<!--	<button>Check out</button>-->
-</form>
-
+	<button>Check out</button>
+</form>-->
+<a href="{% url 'items:payments' %}"><button>Check out</button>
 <a href="{% url 'items:index' %}"><button>Back to items</button></a>

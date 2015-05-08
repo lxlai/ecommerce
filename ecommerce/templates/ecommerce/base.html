@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}My amazing site{% endblock %}</title>-->
+</head>
+
+<body>
+	<h1>E-commerce</h1>	
+
+    <div id="sidebar">
+        {% block sidebar %}
+	        <form action='/members/login' method='get'>
+				{% csrf_token %}
+				<input type = "submit" value="Login">
+			</form>
+			<form action='/members/signup' method='get'>
+				{% csrf_token %}
+				<input type = "submit" value="Sign up">
+			</form>
+
+	<!--        <a href="members/login">Login</a>
+	        <a href="members/signup">Sign up</a>
+	        <ul>
+	            <li><a href="/">Home</a></li>
+	            <li><a href="/blog/">Blog</a></li>
+	        </ul>-->
+        {% endblock %}
+<!--    </div>
+
+    <div id="content">-->
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+
+<footer>
+</footer>
+
+</html>

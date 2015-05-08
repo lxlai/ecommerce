@@ -55,12 +55,16 @@ def index(request):
 	return render_to_response('items/index.html', {'items': items, 'name':name})
 
 def cart(request):
-	order=Order.objects.get(user=request.user)
-	items=order.items.all()
-	total = 0
-	for item in items:
-		total += item.price
-	return render(request, 'items/cart.html', {'items':items, 'total':total})
+	orders = Order.objects.filter(user=request.user, status=1)
+	if orders:
+		order= orders[0]
+
+		items=order.items.all()
+		total = 0
+		for item in items:
+			total += item.price
+		return render(request, 'items/cart.html', {'items':items, 'total':total, 'order':order})
+	return HttpResponse('empty cart')
 
 def purchase_item(request, item_id):
 	if request.user.is_authenticated():
@@ -89,13 +93,19 @@ def purchase_item(request, item_id):
 	return HttpResponseRedirect(reverse('members:login'))
 
 def delete_item(request, item_id):
-	order=Order.objects.get(user=request.user)
+	order=Order.objects.filter(user=request.user, status=1)[0]
 	order.items.remove(Item.objects.get(id=item_id))
 	return HttpResponseRedirect(reverse('items:cart'))
 
 def checkout(request):
+	order=Order.objects.filter(user=request.user, status=1)[0]
+	order.status=2
+	order.save()
 	return render(request, 'items/checkout.html', {})
 
 def show(request, item_id):
 	item = get_object_or_404(Item, pk=item_id)
 	return render(request, 'items/show.html', {'item': item})
+
+def payments(request):
+	return render(request, 'items/payments.html', {})
